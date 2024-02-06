@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders Details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>
+    <script th:src="@{/js/app/orders.js}"></script>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+</head>
+<body>
+<h1>Orders List</h1>
+    <div ng-app="myApp" ng-controller="OrdersController">
+        <table>
+            <thead>
+            <tr>
+                <th>Tên Khách hàng</th>
+                <th>Ngày đặt hàng</th>
+                <th>Mã số nhân viên</th>
+                <th width="100"></th>
+                <th width="100"></th>
+            </tr>
+            </thead>
+            <tr ng-repeat="x in ordersList">
+                <td>{{ x.customer.customerName}}</td>
+                <td>{{ x.ordersDate }}</td>
+                <td>{{ x.ordersStaffId }}</td>
+                <td><button type="button" ng-click="ctrl.editUser(u.id)" class="btn btn-success custom-width">Edit</button></td>
+                <td><button type="button" ng-click="ctrl.removeUser(u.id)" class="btn btn-danger custom-width">Remove</button></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

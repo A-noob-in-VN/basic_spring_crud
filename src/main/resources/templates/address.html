@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Address Details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <script th:src="@{/js/app/address1.js}"></script>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+</head>
+<body>
+
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" ui-sref="#">Category</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a ui-sref="home">Address</a></li>
+        <li><a ui-sref="about">Order</a></li>
+        <li><a ui-sref="about">Product</a></li>
+        <li><a ui-sref="about">Customer</a></li>
+    </ul>
+</nav>
+
+<div class="generic-container"  ng-app="myApp" ng-controller="AddressController1">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><span class="lead">Địa chỉ </span></div>
+        <div class="panel-body">
+            <div class="form container">
+                <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-2 control-lable" for="addressName">Phân loại</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="address.addressName" id="addressName" class=" form-control input-sm" placeholder="Tên thành phố" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-2 control-lable" for="addressCity">Thành Phố</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="address.addressCity" id="addressCity" class="form-control input-sm" placeholder="Điền thể loại"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-actions floatRight">
+                            <input type="submit"  value="Add" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid || myForm.$pristine"
+                                   ng-show="address.id === undefined || address.id === null || address.id === ''">
+                            <input type="submit"  value="Update" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid || myForm.$pristine"
+                                   ng-show="address.id !== undefined && address.id !== null && address.id !== ''" ng-click="updateAddress()">
+                            <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="lead">Danh sách địa chỉ </span></div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                    <table class ="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Tên thành phố</th>
+                            <th>Phân loại</th>
+                            <th width="100"></th>
+                            <th width="100"></th>
+                        </tr>
+                        </thead>
+                        <tr ng-repeat="x in addressList">
+                            <td>{{ x.addressCity }}</td>
+                            <td>{{ x.addressName }}</td>
+                            <td><button type="submit" ui-sref=".edit" ng-click="editAddress(x)" class="btn btn-success custom-width">Sửa</button></td>
+                            <td><button type="button" ui-sref=".remove" ng-click="removeAddress(x)" class="btn btn-danger custom-width">Xóa</button></td>
+                        </tr>
+                    </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>
+    <script th:src="@{/js/app/products.js}"></script>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+</head>
+<body>
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" ui-sref="#">Shopee</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a ui-sref="home">Address</a></li>
+        <li><a ui-sref="about">Order</a></li>
+        <li><a ui-sref="about">Product</a></li>
+        <li><a ui-sref="about">Customer</a></li>
+    </ul>
+</nav>
+
+<div class="generic-container"  ng-app="myApp" ng-controller="AddressController1">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><span class="lead">Địa chỉ </span></div>
+        <div class="panel-body">
+            <div class="form container">
+                <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-2 control-lable" for="productName">Tên sản phẩm</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="product.productName" id="productName" class=" form-control input-sm" placeholder="Tên thành phố" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-2 control-lable" for="productPrice">Giá thành</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="product.productPrice" id="productPrice" class="form-control input-sm" placeholder="Điền thể loại"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-2 control-lable" for="produceCode">Mã số sản phẩm</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="product.produceCode" id="produceCode" class=" form-control input-sm" placeholder="Tên thành phố" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-2 control-lable" for="productMfg">Ngày sản xuất</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="product.productMfg" id="productMfg" class=" form-control input-sm" placeholder="Tên thành phố" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-2 control-lable" for="productBbf">Hạn sử dụng</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="product.productBbf" id="productBbf" class=" form-control input-sm" placeholder="Tên thành phố" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-2 control-lable" for="productSite">Địa chỉ sản xuất</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="product.productSite" id="productSite" class=" form-control input-sm" placeholder="Tên thành phố" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-2 control-lable" for="productQuantity">Số lượng</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="product.productQuantity" id="productQuantity" class=" form-control input-sm" placeholder="Tên thành phố" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-actions floatRight">
+                            <input type="submit"  value="Add" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid || myForm.$pristine"
+                                   ng-show="address.id === undefined || address.id === null || address.id === ''">
+                            <input type="submit"  value="Update" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid || myForm.$pristine"
+                                   ng-show="address.id !== undefined && address.id !== null && address.id !== ''" ng-click="updateAddress()">
+                            <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<h1>Danh sách sản phẩm</h1>
+    <div ng-app="myApp" ng-controller="ProductsController">
+        <table>
+            <thead>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Giá thành</th>
+                <th>Mã số sản phẩm</th>
+                <th>Ngày sản xuất</th>
+                <th>Hạn sử dụng</th>
+                <th>Địa chỉ sản xuất</th>
+                <th>Số lượng</th>
+                <th width="100"></th>
+                <th width="100"></th>
+            </tr>
+            </thead>
+            <tr ng-repeat="x in productList">
+                <td>{{ x.productName }}</td>
+                <td>{{ x.productPrice }}</td>
+                <td>{{ x.produceCode }}</td>
+                <td>{{ x.productMfg }}</td>
+                <td>{{ x.productBbf }}</td>
+                <td>{{ x.productSite }}</td>
+                <td>{{ x.productQuantity }}</td>
+                <td><button type="button" ng-click="ctrl.editUser(u.id)" class="btn btn-success custom-width">Edit</button></td>
+                <td><button type="button" ng-click="ctrl.removeUser(u.id)" class="btn btn-danger custom-width">Remove</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

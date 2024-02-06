@@ -1,0 +1,22 @@
+#Server config
+server:
+  port: 8081
+
+#Database config
+spring:
+  datasource:
+    jdbcUrl: jdbc:mysql://localhost:3306/shopee
+    url: jdbc:mysql://localhost:3306/shopee
+    username: root
+    password: Ngotuanminh2004@
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+
+
+  thymeleaf:
+    cache: false
